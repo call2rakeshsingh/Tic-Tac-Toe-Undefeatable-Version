@@ -1,0 +1,71 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+#firstPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 80vh;
+    
+}
+
+
+#singlePlayerButton{
+    background-color: purple;
+    color: white;
+    font-size: 1.5vw;
+    font-weight: bold;
+    width: 20vw;
+    height: 4vw;
+    margin: 0vh 2vh;
+    border-radius: 3vh;
+    border: none;
+    cursor: pointer;
+
+    
+}
+
+#singlePlayerButton:hover{
+
+    background-color: rgb(108, 0, 108);
+    font-size: 1.485vw;
+
+}
+#singlePlayerButton:hover{
+
+    background-color: rgb(87, 0, 87);
+    font-size: 1.46;
+
+}
+
+#doublePlayerButton{
+    background-color: green;
+    color: white;
+    font-size: 1.5vw;
+    font-weight: bold;
+    width: 20vw;
+    height: 4vw;
+    margin: 0vh 2vh;
+    border-radius: 3vh;
+    border: none;
+    cursor: pointer;
+    
+}
+
+#doublePlayerButton:hover{
+
+    background-color: rgb(1, 113, 1);
+    font-size: 1.485vw;
+
+}
+#doublePlayerButton:active{
+
+    background-color: rgb(1, 83, 1);
+    font-size: 1.46;
+
+}
