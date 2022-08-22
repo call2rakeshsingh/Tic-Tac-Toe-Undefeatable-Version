@@ -1,0 +1,162 @@
+/* reset our DOM */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+}
+
+
+
+#center {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.gameContainer {
+  display: grid;
+  margin-top: 15vh;
+  margin-left: 15vh;
+  grid-template-rows: repeat(3, 10vh);
+  grid-template-columns: repeat(3, 10vh);
+  position: absolute;
+  
+}
+
+.box {
+  display: flex;
+  border: 0.4vh solid rgb(38, 1, 83);
+  /* border: 0.4vh solid rgb(251, 0, 247); */
+  align-items: center;
+  justify-content: center;
+  font-size: 6vh;
+  font-weight: bold;
+  user-select: none;
+  cursor: pointer;
+}
+
+/*
+.box:hover {
+  cursor: pointer;
+  background-color: rgba(237, 165, 255,1);
+}
+*/
+
+#boxText1,
+#boxText2,
+#boxText3 {
+  border-top: none;
+}
+
+#boxText1,
+#boxText4,
+#boxText7 {
+  border-left: none;
+}
+
+#boxText3,
+#boxText6,
+#boxText9 {
+  border-right: none;
+}
+
+#boxText7,
+#boxText8,
+#boxText9 {
+  border-bottom: none;
+}
+
+#cong {
+  position: absolute;
+  margin-top: -6vh;
+  height: 6vh;
+  width: 61vh;
+  background-color: rgb(255, 60, 102);
+  font-size: 4vh;
+  font-weight: bold;
+  color: white;
+
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+
+  display: none;
+  /* border: 10px solid yellow; */
+}
+
+#turns {
+  display: grid;
+  margin-top: 25vh;
+  grid-template-columns: repeat(2, 50%);
+  background-color: rgb(167, 60, 255);
+  height: 6vh;
+  width: 61vh;
+  font-size: 1vh;
+  font-weight: bold;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+#turnOfX {
+  position: absolute;
+  margin-top: 0vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(251, 0, 255);
+  height: 6vh;
+  width: 30.5vh;
+  font-size: 3vh;
+  font-weight: bold;
+  color: white;
+}
+
+#turnOf0 {
+  position: absolute;
+  margin-top: 0vh;
+  margin-left: 30.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: -12px;
+  height: 6vh;
+  width: 30.5vh;
+  font-size: 3vh;
+  font-weight: bold;
+  color: white;
+}
+
+#winnerName {
+  display: flex;
+  position: absolute;
+  margin-top: 3vh;
+  font-size: 3.5vh;
+  font-weight: bold;
+  width: 60vh;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+#reset {
+  position: absolute;
+  margin-top: 56vh;
+  width: 61vh;
+  height: 6vh;
+  font-size: 3vh;
+  font-weight: bold;
+  background-color: rgb(112, 45, 255);
+  color: white;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+#reset:hover {
+  background-color: rgb(93, 20, 251);
+  background-color: rgb(0, 25, 251);
+  font-size: 2.8vh;
+}

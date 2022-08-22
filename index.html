@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="firstPageCSS.css" />
+    <title>Tik Tak Toe</title>
+  </head>
+
+  <body>
+    <div id = "firstPage">
+      <div id="firstPageButtons1">
+    <span id="singlePlayerButton1"></span>
+    <span id="doublePlayerButton1"></span>
+  </div>
+    <span id="goToHomeButton1"></span>
+    <div id="center">
+      <div id="turns">
+        <div id="turnOfX">Player 1</div>
+        <div id="turnOf0"></div>
+      </div>
+      <div id="cong"></div>
+      <div class="gameContainer">
+        <div class="box" id="boxText1" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText2" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText3" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText4" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText5" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText6" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText7" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText8" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText9" onclick="changeTurn(this)"></div>
+      </div>
+      <div id="winnerName">Head</div>
+
+      <button id="reset" onclick="resetGame()">Reset</button>
+    </div>
+  </div>
+
+  <div id="appendScript"></div>
+  <script src="firstPageScript.js" id="exitstingScript"></script>
+  </body>
+</html>
+
+
+

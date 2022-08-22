@@ -1,0 +1,294 @@
+const turnChangeMusic = new Audio("ting.mp3");
+const resetGameMusic = new Audio("resetGame.mp3");
+const gameWinMusic = new Audio("gameWinMusic.wav");
+const gameDrawMusic = new Audio("gameDrawMusic.wav");
+
+
+// Targeting HTML Elements
+const congratulationsID = document.getElementById("cong");
+const winnerNameID = document.getElementById("winnerName");
+const turnOfXID = document.getElementById("turnOfX");
+const turnOf0ID = document.getElementById("turnOf0");
+const boxClass = document.getElementsByClassName("box");
+
+// Targeting HTML Elements for winner color
+const boxText1ID = document.getElementById("boxText1");
+const boxText2ID = document.getElementById("boxText2");
+const boxText3ID = document.getElementById("boxText3");
+const boxText4ID = document.getElementById("boxText4");
+const boxText5ID = document.getElementById("boxText5");
+const boxText6ID = document.getElementById("boxText6");
+const boxText7ID = document.getElementById("boxText7");
+const boxText8ID = document.getElementById("boxText8");
+const boxText9ID = document.getElementById("boxText9");
+
+
+
+//color code naming
+const toggleColorName = "rgb(251, 0, 255)";
+const toggleResetColorName = "rgb(167, 60, 255)";
+const gameDrawColor = "rgb(255, 60, 102)";
+const resetButtonInitialColor = "rgb(112, 45, 255)";
+const resetButtonPlayAgainColor = "rgb(251, 0, 247)";
+const gameWinCongratulationsColor = "rgb(131, 0, 124)";
+const colorOfX = "blue";
+const colorOf0 = "green";
+const colorOfBoxHover = "rgba(237, 165, 255,1)";
+const colorResetOfBoxHover = "rgba(237, 165, 255,0)";
+const winnerHilightedTextColor = "red";
+const winnerHilightedBackgroundColor = "rgb(254, 255, 183)";
+
+//Winner font size
+const winnerFontSize = "7vh";
+const winnerResetFontSize = "6vh";
+
+
+
+
+let div1, div2, div3; //for winning logic.
+
+let count = 1; //for toggle between X and Y
+
+//Function for toggle between X and Y
+
+
+function changeTurn(control) {
+  if (count <= 9) {
+    if (document.getElementById(control.id).innerHTML != "") {
+      return;
+    }
+
+    if (count % 2 != 0) {
+      document.getElementById(control.id).style.color = colorOfX;
+      document.getElementById(control.id).innerHTML = "X";
+      turnOf0ID.style.backgroundColor = toggleColorName;
+      turnOfXID.style.backgroundColor = toggleResetColorName;
+      turnOf0ID.innerText = "Player 2";
+      turnOfXID.innerText = "";
+
+      turnChangeMusic.play();
+
+    } else {
+      document.getElementById(control.id).style.color = colorOf0;
+      document.getElementById(control.id).innerHTML = "0";
+      turnOfXID.style.backgroundColor = toggleColorName;
+      turnOf0ID.style.backgroundColor = toggleResetColorName;
+      turnOfXID.innerText = "Player 1";
+      turnOf0ID.innerText = "";
+
+      turnChangeMusic.play();
+    }
+
+    count++;
+  }
+
+  if (checkAllBox() && count != 12) {
+    winnerNameID.innerText = "Game Draw";
+    winnerNameID.style.color = gameDrawColor;
+    turnOf0ID.innerText = "";
+    turnOfXID.innerText = "";
+    turnOf0ID.style.backgroundColor = toggleResetColorName;
+    turnOfXID.style.backgroundColor = toggleResetColorName;
+    congratulationsID.style.display = "flex";
+    congratulationsID.innerText = "Opps!!!";
+    document.getElementById("reset").innerText = "Play Again!!!";
+    document.getElementById("reset").style.backgroundColor = resetButtonPlayAgainColor;
+    gameWinMusic.pause();
+    gameDrawMusic.play();
+
+  }
+
+  if (
+    count < 12 &&
+    (gameWinner("boxText1", "boxText2", "boxText3") ||
+      gameWinner("boxText4", "boxText5", "boxText6") ||
+      gameWinner("boxText7", "boxText8", "boxText9") ||
+      gameWinner("boxText1", "boxText4", "boxText7") ||
+      gameWinner("boxText2", "boxText5", "boxText8") ||
+      gameWinner("boxText3", "boxText6", "boxText9") ||
+      gameWinner("boxText1", "boxText5", "boxText9") ||
+      gameWinner("boxText3", "boxText5", "boxText7"))
+  ) {
+    {
+      winnerNameID.innerText = `${
+        count % 2 == 1 ? "Player 2" : "Player 1"
+      } is The Winner`;
+
+    }
+
+    winnerNameID.style.color = "rgb(251, 0, 255)";
+    turnOf0ID.innerText = "";
+    turnOfXID.innerText = "";
+    turnOf0ID.style.backgroundColor = toggleResetColorName;
+    turnOfXID.style.backgroundColor = toggleResetColorName;
+    congratulationsID.style.display = "flex";
+    congratulationsID.innerText = "Congratulations!!!";
+    
+    
+    congratulationsID.style.backgroundColor = gameWinCongratulationsColor;
+    document.getElementById("reset").innerText = "Play Again!!!";
+    document.getElementById("reset").style.backgroundColor = resetButtonPlayAgainColor;
+    
+    gameDrawMusic.pause();
+    gameWinMusic.play();
+    count = 12;
+  }
+
+
+  //for highlight winner
+
+  if (gameWinner("boxText1", "boxText2", "boxText3")) {
+
+    boxText1ID.style.color = winnerHilightedTextColor;
+    boxText1ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText2ID.style.color = winnerHilightedTextColor;
+    boxText2ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText3ID.style.color = winnerHilightedTextColor;
+    boxText3ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText1ID.style.fontSize = winnerFontSize;
+    boxText2ID.style.fontSize = winnerFontSize;
+    boxText3ID.style.fontSize = winnerFontSize;
+  }
+  
+  else if(gameWinner("boxText4", "boxText5", "boxText6")){
+    boxText4ID.style.color = winnerHilightedTextColor;
+    boxText4ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText5ID.style.color = winnerHilightedTextColor;
+    boxText5ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText6ID.style.color = winnerHilightedTextColor;
+    boxText6ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText4ID.style.fontSize = winnerFontSize;
+    boxText5ID.style.fontSize = winnerFontSize;
+    boxText6ID.style.fontSize = winnerFontSize;
+  }
+  
+  else if(gameWinner("boxText7", "boxText8", "boxText9")){
+    boxText7ID.style.color = winnerHilightedTextColor;
+    boxText7ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText8ID.style.color = winnerHilightedTextColor;
+    boxText8ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText9ID.style.color = winnerHilightedTextColor;
+    boxText9ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText7ID.style.fontSize = winnerFontSize;
+    boxText8ID.style.fontSize = winnerFontSize;
+    boxText9ID.style.fontSize = winnerFontSize;
+  }
+  
+  else if(gameWinner("boxText1", "boxText4", "boxText7")){
+    boxText1ID.style.color = winnerHilightedTextColor;
+    boxText1ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText4ID.style.color = winnerHilightedTextColor;
+    boxText4ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText7ID.style.color = winnerHilightedTextColor;
+    boxText7ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText1ID.style.fontSize = winnerFontSize;
+    boxText4ID.style.fontSize = winnerFontSize;
+    boxText7ID.style.fontSize = winnerFontSize;
+  }
+  
+  else if(gameWinner("boxText2", "boxText5", "boxText8")){
+    boxText2ID.style.color = winnerHilightedTextColor;
+    boxText2ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText5ID.style.color = winnerHilightedTextColor;
+    boxText5ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText8ID.style.color = winnerHilightedTextColor;
+    boxText8ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText2ID.style.fontSize = winnerFontSize;
+    boxText5ID.style.fontSize = winnerFontSize;
+    boxText8ID.style.fontSize = winnerFontSize;
+  }
+  
+  else if(gameWinner("boxText3", "boxText6", "boxText9")){
+    boxText3ID.style.color = winnerHilightedTextColor;
+    boxText3ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText6ID.style.color = winnerHilightedTextColor;
+    boxText6ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText9ID.style.color = winnerHilightedTextColor;
+    boxText9ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText3ID.style.fontSize = winnerFontSize;
+    boxText6ID.style.fontSize = winnerFontSize;
+    boxText9ID.style.fontSize = winnerFontSize;
+  }
+  
+  else if(gameWinner("boxText1", "boxText5", "boxText9")){
+    boxText1ID.style.color = winnerHilightedTextColor;
+    boxText1ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText5ID.style.color = winnerHilightedTextColor;
+    boxText5ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText9ID.style.color = winnerHilightedTextColor;
+    boxText9ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText1ID.style.fontSize = winnerFontSize;
+    boxText5ID.style.fontSize = winnerFontSize;
+    boxText9ID.style.fontSize = winnerFontSize;
+  }
+  
+  else if(gameWinner("boxText3", "boxText5", "boxText7")){
+    boxText3ID.style.color = winnerHilightedTextColor;
+    boxText3ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText5ID.style.color = winnerHilightedTextColor;
+    boxText5ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText7ID.style.color = winnerHilightedTextColor;
+    boxText7ID.style.backgroundColor = winnerHilightedBackgroundColor;
+    boxText3ID.style.fontSize = winnerFontSize;
+    boxText5ID.style.fontSize = winnerFontSize;
+    boxText7ID.style.fontSize = winnerFontSize;
+  }
+
+
+}
+
+let txt = "";
+
+//Function for Check Game Draw Condition
+function checkAllBox() {
+  for (let i = 1; i < 10; i++)
+    if (document.getElementById("boxText" + i).innerText != "") {
+      txt = true;
+    } else {
+      return false;
+    }
+  return txt;
+}
+
+
+//Funtion to Reset The Game.
+function resetGame() {
+  for (let i = 1; i < 10; i++) {
+    document.getElementById("boxText" + i).innerText = "";
+    document.getElementById("boxText" + i).style.backgroundColor = "white";
+    document.getElementById("boxText"+ i).style.fontSize = winnerResetFontSize;
+  }
+  congratulationsID.innerText = "";
+  congratulationsID.style.display = "none";
+  turnOf0ID.style.backgroundColor = toggleResetColorName;
+  winnerNameID.innerText = "";
+  turnOf0ID.innerText = "";
+  turnOfXID.innerText = "Player 1";
+  turnOfXID.style.backgroundColor = toggleColorName;
+  congratulationsID.style.backgroundColor = gameDrawColor;
+  document.getElementById("reset").innerText = "Reset";
+  document.getElementById("reset").style.backgroundColor = resetButtonInitialColor;
+  winnerNameID.innerText = "Head";
+  winnerNameID.style.color = "white";
+  count = 1;
+
+  gameDrawMusic.pause();
+  gameDrawMusic.currentTime = 0;
+  gameWinMusic.pause();
+  gameWinMusic.currentTime = 0;
+  resetGameMusic.play();
+}
+
+
+//Function to check win condition
+function gameWinner(div1, div2, div3) {
+  if (
+    document.getElementById(div1).innerText != "" &&
+    document.getElementById(div1).innerText ==
+      document.getElementById(div2).innerText &&
+    document.getElementById(div2).innerText ==
+      document.getElementById(div3).innerText
+  ) {
+    return true;
+  }
+}
