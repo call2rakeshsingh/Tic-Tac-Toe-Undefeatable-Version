@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <link rel="stylesheet" media="screen and (min-width: 1000px)" href="style.css">
+    <link rel="stylesheet" media="screen and (min-width: 500px) and (max-width: 999.999px)" href="tabletStyle.css">
+    <link rel="stylesheet" media="screen and (max-width: 499.9px)" href="mobileStyle.css">
+    <title>Tik Tak Toe</title>
+  </head>   
+
+
+  <body>
+    <div id = "firstPage">
+      <div id="firstPageButtonsID">
+    <div id="singlePlayerButtonID">
+      <input type="checkbox" name="singlePlayer" id="singlePlayer" class="checkBoxClass">
+      <label for="singlePlayer">
+        <div id="singlePlayerButton" class="btn" onclick="chooseMode()">Single Player</div>
+      </label>
+    </div>
+    <div id="doublePlayerButtonID">
+      <input type="checkbox" name="doublePlayer" id="doublePlayer" class="checkBoxClass">
+      <label for="doublePlayer">
+        <div id="doublePlayerButton" class="btn" onclick="chooseMode()">Double Player</div>
+        
+      </label>
+    </div>
+  </div>
+    <div id="goToHomeButtonID">
+      <input type="checkbox" name="goToHome" id="goToHome" class="checkBoxClass">
+      <label for="goToHome">
+      <div id="goToHomeButton" class="btn" onclick="forGoToHome()">GoTo Home</div>
+    </label>
+    </div>
+    <div id="center">
+      <div id="turns">
+        <div id="turnOfX">Player 1</div>
+        <div id="turnOf0"></div>
+      </div>
+      <div id="cong"></div>
+      <div id="winnerName">Head</div>
+      <div id="boxesMain">
+
+      <div class="gameContainer">
+        <div class="box" id="boxText1" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText2" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText3" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText4" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText5" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText6" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText7" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText8" onclick="changeTurn(this)"></div>
+        <div class="box" id="boxText9" onclick="changeTurn(this)"></div>
+      </div>
+    </div>
+
+      <button id="reset" onclick="resetGame()">Reset</button>
+
+    </div>
+  </div>
+
+  <!-- <div id="appendScript"><script src="firstPageScript.js?version=1"></script></div> -->
+
+  <script src="newJS.js"></script>
+  
+
+  </body>
+</html>
+
+
+
